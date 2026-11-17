@@ -1,0 +1,1170 @@
+{
+ "records": [
+  {
+   "body": {
+    "defaultCwd": "<T>/home/work",
+    "home": "<T>/home",
+    "ok": true,
+    "pi": "<T>/bin/pi",
+    "version": 1
+   },
+   "req": "GET /health ",
+   "status": 200
+  },
+  {
+   "body": {
+    "auth": true,
+    "claudeModels": [
+     {
+      "description": "Fake One · fake · 200K",
+      "displayName": "Fake One",
+      "images": false,
+      "provider": "fake",
+      "reasoning": true,
+      "value": "fake/fake-1"
+     }
+    ],
+    "claudeVersion": "9.9.9",
+    "defaultModel": "",
+    "effort": "",
+    "efforts": [
+     "off",
+     "minimal",
+     "low",
+     "medium",
+     "high",
+     "xhigh",
+     "max"
+    ],
+    "models": [
+     "fake/fake-1"
+    ],
+    "permissionModes": [],
+    "piVersion": "9.9.9",
+    "providers": []
+   },
+   "req": "GET /config ",
+   "status": 200
+  },
+  {
+   "body": {
+    "appendSystemPrompt": "",
+    "disallowedTools": "",
+    "extraArgs": ""
+   },
+   "req": "GET /launch ",
+   "status": 200
+  },
+  {
+   "body": {
+    "path": "<T>/home/.pi/agent/AGENTS.md",
+    "text": ""
+   },
+   "req": "GET /memory?scope=global ",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "unknown scope"
+   },
+   "req": "GET /memory?scope=nope ",
+   "status": 400
+  },
+  {
+   "body": {
+    "path": "<T>/f/AGENTS.md",
+    "text": ""
+   },
+   "req": "GET /memory?scope=folder&cwd=<T>/f ",
+   "status": 200
+  },
+  {
+   "body": {
+    "dirs": [
+     "bin",
+     "home"
+    ],
+    "home": "<T>/home",
+    "parent": "/tmp",
+    "path": "<T>"
+   },
+   "req": "GET /dirs?path=<T> ",
+   "status": 200
+  },
+  {
+   "body": {
+    "dirs": [],
+    "error": "[Errno 2] No such file or directory: '/definitely/not/here'",
+    "parent": "/definitely/not",
+    "path": "/definitely/not/here"
+   },
+   "req": "GET /dirs?path=/definitely/not/here ",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "not found"
+   },
+   "req": "GET /image?id=none&at=0&n=0 ",
+   "status": 404
+  },
+  {
+   "body": {
+    "error": "not found"
+   },
+   "req": "GET /history?id=none ",
+   "status": 404
+  },
+  {
+   "body": {
+    "error": "not found"
+   },
+   "req": "GET /nothing ",
+   "status": 404
+  },
+  {
+   "body": {
+    "error": "invalid literal for int() with base 10: 'abc'"
+   },
+   "req": "GET /events?since=abc ",
+   "status": 400
+  },
+  {
+   "body": {
+    "sessions": [
+     {
+      "cwd": "/tmp/proj",
+      "id": "aaaaaaaa-0000-0000-0000-000000000001",
+      "mtime": 0,
+      "running": false,
+      "size": 1919,
+      "title": "first question"
+     },
+     {
+      "cwd": "/tmp/proj",
+      "id": "aaaaaaaa-0000-0000-0000-000000000002",
+      "mtime": 0,
+      "running": false,
+      "size": 1167,
+      "title": "Named one"
+     },
+     {
+      "cwd": "/tmp/proj",
+      "id": "aaaaaaaa-0000-0000-0000-000000000003",
+      "mtime": 0,
+      "running": false,
+      "size": 1195,
+      "title": "only one"
+     }
+    ]
+   },
+   "req": "GET /sessions ",
+   "status": 200
+  },
+  {
+   "body": {
+    "results": [
+     {
+      "id": "aaaaaaaa-0000-0000-0000-000000000001",
+      "snippet": "he tool second question about pelicans second answer"
+     }
+    ]
+   },
+   "req": "GET /search?q=pelicans ",
+   "status": 200
+  },
+  {
+   "body": {
+    "results": []
+   },
+   "req": "GET /search?q= ",
+   "status": 200
+  },
+  {
+   "body": {
+    "context": 120,
+    "cwd": "/tmp/proj",
+    "id": "aaaaaaaa-0000-0000-0000-000000000001",
+    "messages": [
+     {
+      "images": [
+       "ccimg:aaaaaaaa-0000-0000-0000-000000000001:311:0"
+      ],
+      "role": "user",
+      "text": "first question",
+      "uuid": "u1"
+     },
+     {
+      "blocks": [
+       {
+        "text": "first answer",
+        "type": "text"
+       },
+       {
+        "id": "t1",
+        "images": [],
+        "input": {
+         "command": "ls"
+        },
+        "isError": false,
+        "name": "bash",
+        "result": "a.txt",
+        "type": "tool"
+       },
+       {
+        "text": "after the tool",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "a1"
+     },
+     {
+      "images": [],
+      "role": "user",
+      "text": "second question about pelicans",
+      "uuid": "u2"
+     },
+     {
+      "blocks": [
+       {
+        "text": "second answer",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "a2"
+     }
+    ],
+    "model": "fake/fake-1",
+    "title": null
+   },
+   "req": "GET /history?id=aaaaaaaa-0000-0000-0000-000000000001 ",
+   "status": 200
+  },
+  {
+   "body": {
+    "context": 120,
+    "cwd": "/tmp/proj",
+    "id": "aaaaaaaa-0000-0000-0000-000000000003",
+    "messages": [
+     {
+      "images": [],
+      "role": "user",
+      "text": "only one",
+      "uuid": "w1"
+     },
+     {
+      "blocks": [
+       {
+        "text": "yes",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "c1"
+     },
+     {
+      "role": "divider",
+      "text": "上下文已压缩"
+     },
+     {
+      "images": [],
+      "role": "user",
+      "text": "after compaction",
+      "uuid": "w2"
+     },
+     {
+      "blocks": [
+       {
+        "text": "fine",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "c2"
+     }
+    ],
+    "model": "fake/fake-1",
+    "title": null
+   },
+   "req": "GET /history?id=aaaaaaaa-0000-0000-0000-000000000003 ",
+   "status": 200
+  },
+  {
+   "body": {
+    "data": "iVBORw0KGgo=",
+    "type": "image/png"
+   },
+   "req": "GET /image?id=aaaaaaaa-0000-0000-0000-000000000001&at=311&n=0 ",
+   "status": 200
+  },
+  {
+   "body": {
+    "appendSystemPrompt": "be brief",
+    "disallowedTools": "write edit",
+    "extraArgs": ""
+   },
+   "req": "POST /launch {\"appendSystemPrompt\": \"be brief\", \"disallowedTools\": \"write edit\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "bad request: No closing quotation"
+   },
+   "req": "POST /launch {\"extraArgs\": \"'unclosed\"}",
+   "status": 400
+  },
+  {
+   "body": {
+    "error": "bad request: 启动参数里不能有 -c：开哪个对话、怎么交流由 App 决定"
+   },
+   "req": "POST /launch {\"extraArgs\": \"--tools read,bash -c\"}",
+   "status": 400
+  },
+  {
+   "body": {
+    "error": "bad request: 启动参数里不能有 --session：开哪个对话、怎么交流由 App 决定"
+   },
+   "req": "POST /launch {\"extraArgs\": \"--session=aaaaaaaa-0000-0000-0000-000000000001\"}",
+   "status": 400
+  },
+  {
+   "body": {
+    "error": "bad request: 启动参数要以选项开头（如 --tools read,bash）；给模型的说明请写在「系统提示」里"
+   },
+   "req": "POST /launch {\"extraArgs\": \"- You run inside the app; use `rish -c '<command>'`\"}",
+   "status": 400
+  },
+  {
+   "body": {
+    "appendSystemPrompt": "be brief",
+    "disallowedTools": "write edit",
+    "extraArgs": "--no-skills --skill ~/more"
+   },
+   "req": "POST /launch {\"extraArgs\": \"--no-skills --skill ~/more\"}",
+   "status": 200
+  },
+  {
+   "body": [
+    "--append-system-prompt",
+    "be brief",
+    "--exclude-tools",
+    "write,edit",
+    "--no-skills",
+    "--skill",
+    "<T>/home/more"
+   ],
+   "req": "launch.args()",
+   "status": 0
+  },
+  {
+   "body": {
+    "appendSystemPrompt": "be brief",
+    "disallowedTools": "write edit",
+    "extraArgs": ""
+   },
+   "req": "POST /launch {\"extraArgs\": \"\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "appendSystemPrompt": "be brief",
+    "disallowedTools": "write edit",
+    "extraArgs": "\n- You run inside the app\n- use `rish -c '<command>'`",
+    "extraArgsUnused": "启动参数要以选项开头（如 --tools read,bash）；给模型的说明请写在「系统提示」里"
+   },
+   "req": "GET /launch ",
+   "status": 200
+  },
+  {
+   "body": {
+    "appendSystemPrompt": "",
+    "disallowedTools": "write edit",
+    "extraArgs": "\n- You run inside the app\n- use `rish -c '<command>'`",
+    "extraArgsUnused": "启动参数要以选项开头（如 --tools read,bash）；给模型的说明请写在「系统提示」里"
+   },
+   "req": "POST /launch {\"appendSystemPrompt\": \"\"}",
+   "status": 200
+  },
+  {
+   "body": [
+    "--exclude-tools",
+    "write,edit"
+   ],
+   "req": "launch.args(), extra arguments saved long ago",
+   "status": 0
+  },
+  {
+   "body": {
+    "appendSystemPrompt": "",
+    "disallowedTools": "",
+    "extraArgs": ""
+   },
+   "req": "POST /launch {\"disallowedTools\": \"\", \"extraArgs\": \"\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "path": "<T>/home/.pi/agent/AGENTS.md"
+   },
+   "req": "POST /memory {\"scope\": \"global\", \"text\": \"remember me\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "path": "<T>/f/AGENTS.md"
+   },
+   "req": "POST /memory {\"cwd\": \"<T>/f\", \"scope\": \"folder\", \"text\": \"folder text\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "bad request: unknown scope"
+   },
+   "req": "POST /memory {\"scope\": \"bogus\", \"text\": \"x\"}",
+   "status": 400
+  },
+  {
+   "body": {
+    "path": "<T>/home/.pi/agent/AGENTS.md",
+    "text": "remember me"
+   },
+   "req": "GET /memory?scope=global ",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "path": "<T>/new/dir"
+   },
+   "req": "POST /mkdir {\"path\": \"<T>/new/dir\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "[Errno 20] Not a directory: '<T>/bin/pi/x'"
+   },
+   "req": "POST /mkdir {\"path\": \"<T>/bin/pi/x\"}",
+   "status": 400
+  },
+  {
+   "body": {
+    "error": "bad request: 'path'"
+   },
+   "req": "POST /mkdir {}",
+   "status": 400
+  },
+  {
+   "body": {
+    "ok": true
+   },
+   "req": "POST /auth {\"key\": \"sk-1\", \"provider\": \"deepseek\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "bad provider"
+   },
+   "req": "POST /auth {\"key\": \"x\", \"provider\": \"bad provider\"}",
+   "status": 400
+  },
+  {
+   "body": {
+    "deepseek": {
+     "key": "sk-1",
+     "type": "api_key"
+    }
+   },
+   "req": "auth.json",
+   "status": "0o600"
+  },
+  {
+   "body": {
+    "ok": true
+   },
+   "req": "POST /auth {\"key\": \"\", \"provider\": \"deepseek\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true
+   },
+   "req": "POST /title {\"id\": \"aaaaaaaa-0000-0000-0000-000000000002\", \"title\": \"  A   new   name \"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": false
+   },
+   "req": "POST /title {\"id\": \"nonexistent\", \"title\": \"x\"}",
+   "status": 404
+  },
+  {
+   "body": {
+    "error": "bad request"
+   },
+   "req": "POST /title {\"id\": \"aaaaaaaa-0000-0000-0000-000000000002\", \"title\": \"   \"}",
+   "status": 400
+  },
+  {
+   "body": {
+    "context": 120,
+    "cwd": "/tmp/proj",
+    "id": "aaaaaaaa-0000-0000-0000-000000000002",
+    "messages": [
+     {
+      "images": [],
+      "role": "user",
+      "text": "other conversation",
+      "uuid": "v1"
+     },
+     {
+      "blocks": [
+       {
+        "text": "other answer",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "b1"
+     },
+     {
+      "images": [],
+      "role": "user",
+      "text": "another",
+      "uuid": "v2"
+     },
+     {
+      "blocks": [
+       {
+        "text": "done",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "b2"
+     }
+    ],
+    "model": "fake/fake-1",
+    "title": "A new name"
+   },
+   "req": "GET /history?id=aaaaaaaa-0000-0000-0000-000000000002 ",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "not found"
+   },
+   "req": "POST /nothing {}",
+   "status": 404
+  },
+  {
+   "body": {
+    "error": "bad request: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+   },
+   "req": "POST /send ",
+   "status": 400
+  },
+  {
+   "body": {
+    "error": "bad request: 'chat'"
+   },
+   "req": "POST /send {}",
+   "status": 400
+  },
+  {
+   "body": {
+    "ok": true,
+    "stopped": false
+   },
+   "req": "POST /stop {\"chat\": \"unknown\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "cancelled": true
+   },
+   "req": "POST /cancel {\"chat\": \"unknown\", \"uuid\": \"x\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "pi asks nothing before a tool runs"
+   },
+   "req": "POST /permission {\"allow\": true, \"chat\": \"unknown\", \"requestId\": \"r1\"}",
+   "status": 409
+  },
+  {
+   "body": {
+    "context": null
+   },
+   "req": "POST /context {\"chat\": \"unknown\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true
+   },
+   "req": "POST /open {\"cwd\": \"<T>/work2\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true
+   },
+   "req": "POST /open {\"sessionId\": \"aaaaaaaa-0000-0000-0000-000000000001\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "path": "<T>/up/doc.txt"
+   },
+   "req": "POST /upload name=doc.txt",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "path": "<T>/up/doc (1).txt"
+   },
+   "req": "POST /upload name=doc.txt",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "path": "<T>/up/evil.txt"
+   },
+   "req": "POST /upload name=../evil.txt",
+   "status": 200
+  },
+  {
+   "body": [
+    "doc (1).txt",
+    "doc.txt",
+    "evil.txt"
+   ],
+   "req": "upload files",
+   "status": 0
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c1\", \"content\": [{\"text\": \"use a tool\", \"type\": \"text\"}, {\"source\": {\"data\": \"iVBORw0KGgo=\", \"media_type\": \"image/png\", \"type\": \"base64\"}, \"type\": \"image\"}], \"cwd\": \"<T>/w\", \"mid\": \"m1\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "repeated": true
+   },
+   "req": "POST /send {\"chat\": \"c1\", \"content\": \"use a tool\", \"mid\": \"m1\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c1\", \"content\": [{\"text\": \"hello\", \"type\": \"text\"}], \"cwd\": \"<T>/w\", \"effort\": \"high\", \"mid\": \"m2\", \"model\": \"fake/fake-2\", \"sessionId\": \"<uuid>\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "context": {
+     "categories": [
+      {
+       "deferred": false,
+       "name": "Messages",
+       "tokens": 12
+      }
+     ],
+     "maxTokens": 1000,
+     "model": "fake/fake-1",
+     "percentage": 1.2,
+     "stats": {
+      "assistantMessages": 1,
+      "cost": 0.0012,
+      "tokens": {
+       "cacheRead": 0,
+       "cacheWrite": 0,
+       "input": 30,
+       "output": 6,
+       "total": 36
+      },
+      "toolCalls": 0,
+      "userMessages": 1
+     },
+     "totalTokens": 12
+    }
+   },
+   "req": "POST /context {\"chat\": \"c1\", \"sessionId\": \"<uuid>\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c1\", \"content\": [{\"text\": \"/compact keep the names\", \"type\": \"text\"}], \"mid\": \"m3\", \"sessionId\": \"<uuid>\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c1\", \"content\": [{\"text\": \"/name Tools talk\", \"type\": \"text\"}], \"mid\": \"m4\", \"sessionId\": \"<uuid>\"}",
+   "status": 200
+  },
+  {
+   "body": [
+    "state {\"running\": true}",
+    "cc {\"cwd\": \"<T>/w\", \"model\": \"\", \"session_id\": \"<uuid>\", \"slash_commands\": [\"compact\", \"name\", \"review\"], \"subtype\": \"init\", \"tools\": [\"read\", \"bash\", \"edit\", \"write\"], \"type\": \"system\"}",
+    "stream message_start  \"\"",
+    "stream content_block_start 0 {\"thinking\": \"\", \"type\": \"thinking\"}",
+    "stream content_block_delta 0 {\"thinking\": \"Look first.\", \"type\": \"thinking_delta\"}",
+    "stream content_block_stop 0 \"\"",
+    "stream content_block_start 1 {\"id\": \"call_1\", \"name\": \"bash\", \"type\": \"tool_use\"}",
+    "stream content_block_delta 1 {\"partial_json\": \"{\\\"command\\\": \\\"ls\\\"}\", \"type\": \"input_json_delta\"}",
+    "stream content_block_stop 1 \"\"",
+    "cc {\"message\": {\"content\": [{\"thinking\": \"Look first.\", \"type\": \"thinking\"}, {\"id\": \"call_1\", \"input\": {\"command\": \"ls\"}, \"name\": \"bash\", \"type\": \"tool_use\"}], \"id\": \"pi-c1-1\"}, \"session_id\": \"<uuid>\", \"type\": \"assistant\"}",
+    "cc {\"message\": {\"content\": [{\"content\": [{\"text\": \"a.txt\", \"type\": \"text\"}], \"is_error\": false, \"tool_use_id\": \"call_1\", \"type\": \"tool_result\"}], \"role\": \"user\"}, \"session_id\": \"<uuid>\", \"type\": \"user\"}",
+    "stream message_start  \"\"",
+    "stream content_block_start 0 {\"text\": \"\", \"type\": \"text\"}",
+    "stream content_block_delta 0 {\"text\": \"ok: use a tool\", \"type\": \"text_delta\"}",
+    "stream content_block_stop 0 \"\"",
+    "cc {\"message\": {\"content\": [{\"text\": \"ok: use a tool\", \"type\": \"text\"}], \"id\": \"pi-c1-2\"}, \"session_id\": \"<uuid>\", \"type\": \"assistant\"}",
+    "cc {\"is_error\": false, \"session_id\": \"<uuid>\", \"subtype\": \"success\", \"type\": \"result\"}",
+    "state {\"running\": true}",
+    "cc {\"cwd\": \"<T>/w\", \"model\": \"fake/fake-2\", \"session_id\": \"<uuid>\", \"slash_commands\": [\"compact\", \"name\", \"review\"], \"subtype\": \"init\", \"tools\": [\"read\", \"bash\", \"edit\", \"write\"], \"type\": \"system\"}",
+    "stream message_start  \"\"",
+    "stream content_block_start 0 {\"text\": \"\", \"type\": \"text\"}",
+    "stream content_block_delta 0 {\"text\": \"ok: hello\", \"type\": \"text_delta\"}",
+    "stream content_block_stop 0 \"\"",
+    "cc {\"message\": {\"content\": [{\"text\": \"ok: hello\", \"type\": \"text\"}], \"id\": \"pi-c1-3\"}, \"session_id\": \"<uuid>\", \"type\": \"assistant\"}",
+    "cc {\"is_error\": false, \"session_id\": \"<uuid>\", \"subtype\": \"success\", \"type\": \"result\"}",
+    "state {\"running\": true}",
+    "cc {\"session_id\": \"<uuid>\", \"subtype\": \"compact_boundary\", \"type\": \"system\"}",
+    "cc {\"is_error\": false, \"session_id\": \"<uuid>\", \"subtype\": \"success\", \"type\": \"result\"}",
+    "state {\"running\": true}",
+    "title {\"session_id\": \"<uuid>\", \"title\": \"Tools talk\"}",
+    "cc {\"is_error\": false, \"session_id\": \"<uuid>\", \"subtype\": \"success\", \"type\": \"result\"}"
+   ],
+   "req": "events of a conversation",
+   "status": 0
+  },
+  {
+   "body": {
+    "context": 10,
+    "cwd": "<T>/w",
+    "id": "<uuid>",
+    "messages": [
+     {
+      "images": [
+       "ccimg:<uuid>:157:0"
+      ],
+      "role": "user",
+      "text": "use a tool",
+      "uuid": "e0001"
+     },
+     {
+      "blocks": [
+       {
+        "text": "Look first.",
+        "type": "thinking"
+       },
+       {
+        "id": "call_1",
+        "images": [],
+        "input": {
+         "command": "ls"
+        },
+        "isError": false,
+        "name": "bash",
+        "result": "a.txt",
+        "type": "tool"
+       },
+       {
+        "text": "ok: use a tool",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "e0002"
+     },
+     {
+      "images": [],
+      "role": "user",
+      "text": "hello",
+      "uuid": "e0005"
+     },
+     {
+      "blocks": [
+       {
+        "text": "ok: hello",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "e0006"
+     },
+     {
+      "role": "divider",
+      "text": "上下文已压缩"
+     }
+    ],
+    "model": "fake/fake-1",
+    "title": "Tools talk"
+   },
+   "req": "GET /history?id=<uuid> ",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c2\", \"content\": [{\"text\": \"slow\", \"type\": \"text\"}], \"cwd\": \"<T>/w\", \"mid\": \"n1\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c2\", \"content\": [{\"text\": \"inserted one\", \"type\": \"text\"}], \"cwd\": \"<T>/w\", \"mid\": \"n2\", \"uuid\": \"U1\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c2\", \"content\": [{\"text\": \"inserted two\", \"type\": \"text\"}], \"cwd\": \"<T>/w\", \"mid\": \"n3\", \"uuid\": \"U2\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "cancelled": true
+   },
+   "req": "POST /cancel {\"chat\": \"c2\", \"uuid\": \"U1\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "cancelled": false
+   },
+   "req": "POST /cancel {\"chat\": \"c2\", \"uuid\": \"never\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c2\", \"content\": [{\"text\": \"slow again\", \"type\": \"text\"}], \"mid\": \"n4\", \"sessionId\": \"<uuid>\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "stopped": true
+   },
+   "req": "POST /stop {\"chat\": \"c2\", \"sessionId\": \"<uuid>\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "stopped": false
+   },
+   "req": "POST /stop {\"chat\": \"c2\", \"sessionId\": \"<uuid>\"}",
+   "status": 200
+  },
+  {
+   "body": [
+    "state {\"running\": true}",
+    "cc {\"cwd\": \"<T>/w\", \"model\": \"\", \"session_id\": \"<uuid>\", \"slash_commands\": [\"compact\", \"name\", \"review\"], \"subtype\": \"init\", \"tools\": [\"read\", \"bash\", \"edit\", \"write\"], \"type\": \"system\"}",
+    "state {\"running\": true}",
+    "state {\"running\": true}",
+    "stream message_start  \"\"",
+    "stream content_block_start 0 {\"text\": \"\", \"type\": \"text\"}",
+    "stream content_block_delta 0 {\"text\": \"ok: slow\", \"type\": \"text_delta\"}",
+    "stream content_block_stop 0 \"\"",
+    "cc {\"message\": {\"content\": [{\"text\": \"ok: slow\", \"type\": \"text\"}], \"id\": \"pi-c2-1\"}, \"session_id\": \"<uuid>\", \"type\": \"assistant\"}",
+    "cc {\"command_uuid\": \"U2\", \"session_id\": \"<uuid>\", \"state\": \"started\", \"type\": \"command_lifecycle\"}",
+    "stream message_start  \"\"",
+    "stream content_block_start 0 {\"text\": \"\", \"type\": \"text\"}",
+    "stream content_block_delta 0 {\"text\": \"ok: inserted two\", \"type\": \"text_delta\"}",
+    "stream content_block_stop 0 \"\"",
+    "cc {\"message\": {\"content\": [{\"text\": \"ok: inserted two\", \"type\": \"text\"}], \"id\": \"pi-c2-2\"}, \"session_id\": \"<uuid>\", \"type\": \"assistant\"}",
+    "cc {\"is_error\": false, \"session_id\": \"<uuid>\", \"subtype\": \"success\", \"type\": \"result\"}",
+    "state {\"running\": true}",
+    "cc {\"cwd\": \"<T>/w\", \"model\": \"\", \"session_id\": \"<uuid>\", \"slash_commands\": [\"compact\", \"name\", \"review\"], \"subtype\": \"init\", \"tools\": [\"read\", \"bash\", \"edit\", \"write\"], \"type\": \"system\"}",
+    "stream message_start  \"\"",
+    "stream content_block_start 0 {\"text\": \"\", \"type\": \"text\"}",
+    "stream content_block_delta 0 {\"text\": \"cut\", \"type\": \"text_delta\"}",
+    "stream content_block_stop 0 \"\"",
+    "cc {\"message\": {\"content\": [{\"text\": \"cut\", \"type\": \"text\"}], \"id\": \"pi-c2-3\"}, \"session_id\": \"<uuid>\", \"type\": \"assistant\"}",
+    "cc {\"is_error\": false, \"session_id\": \"<uuid>\", \"subtype\": \"error_during_execution\", \"type\": \"result\"}"
+   ],
+   "req": "events of inserting, taking back, stopping",
+   "status": 0
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c3\", \"content\": [{\"text\": \"refuse\", \"type\": \"text\"}], \"cwd\": \"<T>/w\", \"mid\": \"f1\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"c3\", \"content\": [{\"text\": \"fail\", \"type\": \"text\"}], \"cwd\": \"<T>/w\", \"mid\": \"f2\"}",
+   "status": 200
+  },
+  {
+   "body": [
+    "state {\"running\": true}",
+    "cc {\"is_error\": true, \"result\": \"No API key for provider fake\", \"session_id\": \"<uuid>\", \"subtype\": \"error\", \"type\": \"result\"}",
+    "state {\"running\": true}",
+    "cc {\"cwd\": \"<T>/w\", \"model\": \"\", \"session_id\": \"<uuid>\", \"slash_commands\": [\"compact\", \"name\", \"review\"], \"subtype\": \"init\", \"tools\": [\"read\", \"bash\", \"edit\", \"write\"], \"type\": \"system\"}",
+    "stream message_start  \"\"",
+    "cc {\"message\": {\"content\": [], \"id\": \"pi-c3-1\"}, \"session_id\": \"<uuid>\", \"type\": \"assistant\"}",
+    "cc {\"is_error\": true, \"result\": \"429 rate limited\", \"session_id\": \"<uuid>\", \"subtype\": \"error\", \"type\": \"result\"}"
+   ],
+   "req": "events of failures",
+   "status": 0
+  },
+  {
+   "body": {
+    "error": "cannot start"
+   },
+   "req": "POST /send {\"chat\": \"bad-OSError\", \"content\": \"x\", \"cwd\": \"<T>/w\", \"mid\": \"f-OSError\"}",
+   "status": 500
+  },
+  {
+   "body": {
+    "error": "bad value"
+   },
+   "req": "POST /send {\"chat\": \"bad-ValueError\", \"content\": \"x\", \"cwd\": \"<T>/w\", \"mid\": \"f-ValueError\"}",
+   "status": 500
+  },
+  {
+   "body": {
+    "error": "RuntimeError: odd"
+   },
+   "req": "POST /send {\"chat\": \"bad-RuntimeError\", \"content\": \"x\", \"cwd\": \"<T>/w\", \"mid\": \"f-RuntimeError\"}",
+   "status": 500
+  },
+  {
+   "body": {
+    "ok": true,
+    "sessionId": "<uuid>"
+   },
+   "req": "POST /send {\"chat\": \"bad-OSError\", \"content\": \"x\", \"cwd\": \"<T>/w\", \"mid\": \"f-OSError\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "记录里没有这条消息"
+   },
+   "req": "POST /rewind {\"chat\": \"c1\", \"sessionId\": \"<uuid>\", \"uuid\": \"nope\"}",
+   "status": 404
+  },
+  {
+   "body": {
+    "left": 3,
+    "ok": true
+   },
+   "req": "POST /rewind {\"chat\": \"none\", \"sessionId\": \"aaaaaaaa-0000-0000-0000-000000000001\", \"uuid\": \"u2\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "context": 120,
+    "cwd": "/tmp/proj",
+    "id": "aaaaaaaa-0000-0000-0000-000000000001",
+    "messages": [
+     {
+      "images": [
+       "ccimg:aaaaaaaa-0000-0000-0000-000000000001:311:0"
+      ],
+      "role": "user",
+      "text": "first question",
+      "uuid": "u1"
+     },
+     {
+      "blocks": [
+       {
+        "text": "first answer",
+        "type": "text"
+       },
+       {
+        "id": "t1",
+        "images": [],
+        "input": {
+         "command": "ls"
+        },
+        "isError": false,
+        "name": "bash",
+        "result": "a.txt",
+        "type": "tool"
+       },
+       {
+        "text": "after the tool",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "a1"
+     }
+    ],
+    "model": "fake/fake-1",
+    "title": null
+   },
+   "req": "GET /history?id=aaaaaaaa-0000-0000-0000-000000000001 ",
+   "status": 200
+  },
+  {
+   "body": {
+    "left": 3,
+    "ok": true
+   },
+   "req": "POST /delete-message {\"chat\": \"none\", \"role\": \"assistant\", \"sessionId\": \"aaaaaaaa-0000-0000-0000-000000000002\", \"uuid\": \"b1\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "error": "记录里没有这条消息"
+   },
+   "req": "POST /delete-message {\"chat\": \"none\", \"role\": \"user\", \"sessionId\": \"aaaaaaaa-0000-0000-0000-000000000002\", \"uuid\": \"zz\"}",
+   "status": 404
+  },
+  {
+   "body": {
+    "left": 2,
+    "ok": true
+   },
+   "req": "POST /delete-message {\"chat\": \"none\", \"sessionId\": \"aaaaaaaa-0000-0000-0000-000000000002\", \"uuid\": \"v2\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "context": 120,
+    "cwd": "/tmp/proj",
+    "id": "aaaaaaaa-0000-0000-0000-000000000002",
+    "messages": [
+     {
+      "images": [],
+      "role": "user",
+      "text": "other conversation",
+      "uuid": "v1"
+     },
+     {
+      "blocks": [
+       {
+        "text": "done",
+        "type": "text"
+       }
+      ],
+      "role": "assistant",
+      "uuid": "b2"
+     }
+    ],
+    "model": "fake/fake-1",
+    "title": "A new name"
+   },
+   "req": "GET /history?id=aaaaaaaa-0000-0000-0000-000000000002 ",
+   "status": 200
+  },
+  {
+   "body": {
+    "left": 0,
+    "ok": true
+   },
+   "req": "POST /rewind {\"chat\": \"none\", \"sessionId\": \"aaaaaaaa-0000-0000-0000-000000000003\", \"uuid\": \"w1\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": true
+   },
+   "req": "POST /delete {\"id\": \"aaaaaaaa-0000-0000-0000-000000000001\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": false
+   },
+   "req": "POST /delete {\"id\": \"nonexistent\"}",
+   "status": 200
+  },
+  {
+   "body": {
+    "ok": false
+   },
+   "req": "POST /delete {}",
+   "status": 200
+  },
+  {
+   "body": {
+    "sessions": [
+     {
+      "cwd": "/tmp/proj",
+      "id": "aaaaaaaa-0000-0000-0000-000000000002",
+      "mtime": 0,
+      "running": false,
+      "size": 838,
+      "title": "A new name"
+     },
+     {
+      "cwd": "<T>/w",
+      "id": "<uuid>",
+      "mtime": 0,
+      "running": false,
+      "size": 634,
+      "title": "x"
+     },
+     {
+      "cwd": "<T>/w",
+      "id": "<uuid>",
+      "mtime": 0,
+      "running": false,
+      "size": 641,
+      "title": "fail"
+     },
+     {
+      "cwd": "<T>/w",
+      "id": "<uuid>",
+      "mtime": 0,
+      "running": false,
+      "size": 1671,
+      "title": "slow"
+     },
+     {
+      "cwd": "<T>/w",
+      "id": "<uuid>",
+      "mtime": 0,
+      "running": false,
+      "size": 2161,
+      "title": "Tools talk"
+     }
+    ]
+   },
+   "req": "GET /sessions ",
+   "status": 200
+  }
+ ]
+}

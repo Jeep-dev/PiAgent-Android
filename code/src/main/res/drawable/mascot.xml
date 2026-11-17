@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A pixel π (13×8), in the text's colour. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="52dp" android:height="32dp" android:viewportWidth="13" android:viewportHeight="8">
+    <path android:fillColor="@color/text" android:pathData="M1,0h11v2H1zM3,2h2v6H3zM8,2h2v5H8zM10,6h2v2h-2z" />
+</vector>
