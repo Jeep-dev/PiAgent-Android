@@ -4,6 +4,15 @@
 
 App 自带一个小型 Linux 环境（Alpine + Node.js + proot），pi 就跑在里面；界面是原生 Android 控件，不是 WebView，滚动和选字都是系统自己的。界面和交互沿用 [ClaudeCode-Android](https://github.com/Jeep-dev/ClaudeCode-Android)。
 
+<p>
+  <img src="docs/screenshots/hero.png" width="24%" alt="新对话">
+  <img src="docs/screenshots/chat.png" width="24%" alt="对话">
+  <img src="docs/screenshots/model-service.png" width="24%" alt="模型服务">
+  <img src="docs/screenshots/ocean-dark-drawer.png" width="24%" alt="海湾蓝 深色 对话列表">
+</p>
+
+<sub>从左到右：新对话、对话、设置 → 模型服务、海湾蓝（深色，对话列表）。截图由 <code>ScreensTest</code> 和 <code>ThemesTest</code> 生成，内容是演示用的。</sub>
+
 ## 功能
 
 - **对话**：流式回复、思考过程、工具步骤（命令、文件改动、读写文件）都折叠成行；回复中可以继续发消息（插入：pi 跑完当前工具就交给模型；或者排队：回复结束后再发），插入的消息在送到模型之前可以撤回。
