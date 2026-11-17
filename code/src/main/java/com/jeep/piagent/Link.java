@@ -17,11 +17,15 @@ final class Link extends Part {
 
     Link(MainActivity app) { super(app); }
 
-    /** The app came to the front: the link is made if it is not there, or the open conversation is looked at again. */
+    /** The app came to the front: the link is made if it is not there, or the open conversation is looked
+     *  at again, and pi's models (an extension installed or a login made in the terminal meanwhile). */
     void resume() {
         resumed = true;
         if (!linked && !connecting && setup == null) connect(false);
-        else if (linked) app.sender.opened(app.current);
+        else if (linked) {
+            app.sender.opened(app.current);
+            app.readConfig(); // the bridge lists the models again when anything they come from changed, and says so
+        }
     }
 
     void pause() { resumed = false; }

@@ -1,4 +1,4 @@
-# Pi Agent for Android (v0.1.0)
+# Pi Agent for Android (v0.1.1)
 
 pi (pi.dev, `@earendil-works/pi-coding-agent`) on the phone in one app, no Termux needed: its own
 application id (`com.jeep.piagent`), name and icon. No WebView: the interface is plain Android
@@ -44,8 +44,9 @@ with pi in place of Claude Code: the interface is the same, the bridge speaks pi
   later. A message sent while pi is busy with a run the app does not know of goes as a follow-up.
 - Model and thinking level apply from the next message, changed in the running pi (`set_model`,
   `set_thinking_level`); a new pi gets `--model provider/id` and `--thinking`. The models listed
-  are those pi can sign in to (`get_available_models` of a short pi of the bridge's own, asked
-  again when pi, `auth.json`, `models.json` or `settings.json` change).
+  are those pi can sign in to (`get_available_models` of a short pi of the bridge's own, with its
+  extensions, so providers an extension adds are listed; asked again when pi, `auth.json`,
+  `models.json`, `settings.json` or the extensions folder change).
 - Settings → 模型服务 keeps a provider's API key in pi's `~/.pi/agent/auth.json` (the bridge's
   `/auth`, mode 0600); subscriptions sign in with pi's `/login` in the terminal; `models.json`
   and `settings.json` are edited whole. Settings → 对话 sets text for `--append-system-prompt` and

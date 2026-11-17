@@ -297,7 +297,7 @@ public final class MainActivity extends Activity implements Bridge.Events {
     }
 
     /** pi's models or sign-ins changed (the bridge listed them again): what the app shows of them is read again. */
-    private void readConfig() {
+    void readConfig() {
         bridge.get("/config", (status, data) -> {
             if (status != 200) return;
             agent.applyConfig(data);

@@ -26,7 +26,7 @@ import uuid
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import parse_qs, urlparse
 
-VERSION = 1  # Bridge VERSION in the app: an app update replaces an older running bridge
+VERSION = 2  # Bridge VERSION in the app: an app update replaces an older running bridge
 HOME = os.path.expanduser('~')
 PI_DIR = os.environ.get('PI_CODING_AGENT_DIR') or os.path.join(HOME, '.pi', 'agent')
 STATE_DIR = os.path.join(HOME, '.piapp')
@@ -1307,20 +1307,25 @@ def find_pi_info():
 
 
 def models_stamp():
-    return file_stamp(os.path.realpath(pi_path()), *[os.path.join(PI_DIR, n) for n in ('auth.json', 'models.json', 'settings.json')])
+    return file_stamp(os.path.realpath(pi_path()), *[os.path.join(PI_DIR, n) for n in ('auth.json', 'models.json', 'settings.json', 'extensions')])
 
 
 def find_models():
     """The models pi can use (those of providers with a way to sign in), from a short pi of its own,
-    asked again when pi, its sign-ins, models.json or settings change (kept in MODELS_FILE)."""
+    asked again when pi, its sign-ins, models.json or settings change (kept in MODELS_FILE). Its
+    extensions are loaded: providers they add (installed with `pi install`, which changes settings.json,
+    or put in the extensions folder) are listed too."""
     if not models_lock.acquire(blocking=False):
         return
     try:
         stamp = models_stamp()
-        if read_json(MODELS_FILE, {}).get('stamp') == stamp or not os.path.exists(pi_path()):
+        before = read_json(MODELS_FILE, {}).get('stamp')
+        if before == stamp or not os.path.exists(pi_path()):
             return
+        if before:  # an extension or a sign-in changed: the spare is started again with it
+            launch.gen += 1
         env = dict(pi_env(), PI_OFFLINE='1')
-        proc = subprocess.Popen([pi_path(), '--mode', 'rpc', '--no-session', '--no-extensions', '--no-skills'],
+        proc = subprocess.Popen([pi_path(), '--mode', 'rpc', '--no-session', '--no-skills'],
                                 cwd=HOME, env=env, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
         proc.stdin.write(b'{"id":"m","type":"get_available_models"}\n')
         proc.stdin.flush()

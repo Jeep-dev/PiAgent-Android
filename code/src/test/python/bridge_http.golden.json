@@ -6,7 +6,7 @@
     "home": "<T>/home",
     "ok": true,
     "pi": "<T>/bin/pi",
-    "version": 1
+    "version": 2
    },
    "req": "GET /health ",
    "status": 200
